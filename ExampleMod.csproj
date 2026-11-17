@@ -31,6 +31,7 @@
         <PackageReference Include="Harmonize" Version="1.0.6" PrivateAssets="all"/>
         <PackageReference Include="Hamunii.BepInEx.AutoPlugin" Version="2.1.0" PrivateAssets="all"/>
         <PackageReference Include="Microsoft.Unity.Analyzers" Version="1.26.0" PrivateAssets="all"/>
+        <PackageReference Include="unityscenerepacker" Version="4.0.0"/>
         <PackageReference
                 Include="UnityEngine.Modules"
                 Version="6000.0.50"
@@ -69,6 +70,7 @@
         <ItemGroup>
             <Binaries Include="$(TargetPath)" LocalDir="/" PackDir="/"/>
             <Binaries Include="$(TargetDir)/$(TargetName).pdb" LocalDir="/" PackDir="/"/>
+            <Binaries Include="@(UnitySceneRepackerFiles)" LocalDir="/" PackDir="/"/>
         </ItemGroup>
         <PropertyGroup>
             <ThunderstoreDir>$(ProjectDir)/thunderstore</ThunderstoreDir>
