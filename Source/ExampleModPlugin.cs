@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.IO;
 using BepInEx;
 using BepInEx.Configuration;
 using HarmonyLib;
@@ -11,6 +10,7 @@ using UnitySceneRepacker;
 namespace ExampleMod.Source;
 
 [BepInAutoPlugin("io.github.yourgithubusername.examplemod")]
+[BepInDependency(UnitySceneRepackerPlugin.Id)]
 public partial class ExampleModPlugin : BaseUnityPlugin {
     private Harmony harmony = null!;
 
@@ -30,22 +30,14 @@ public partial class ExampleModPlugin : BaseUnityPlugin {
             harmony = Harmony.CreateAndPatchAll(GetType().Assembly);
             spawnShortcut = Config.Bind("Shortcuts", "Spawn Tiktik", new KeyboardShortcut(KeyCode.F2));
 
-            hollowKnightAssets = new RepackedAssets(
-                NextToThisGame("Hollow Knight"),
-                Path.Combine(Paths.CachePath, "unity-scene-repacker"),
+            hollowKnightAssets = UnitySceneRepackerPlugin.RepackedAssets(
+                UnitySceneRepackerPlugin.NextToThisGame("Hollow Knight"),
                 "examplemod"
             );
             tiktikAsset = hollowKnightAssets.Request("Tutorial_01", "_Enemies/Crawler 2");
         } catch (Exception e) {
             Log.Info($"Plugin {Name} ({Id}) failed to initialize: {e}");
         }
-    }
-
-    private static string NextToThisGame(string installDirName) {
-        var installDir = Path.GetDirectoryName(Application.dataPath)!;
-        // on macOS, the data directory is <install>/<game>.app/Contents
-        if (installDir.EndsWith(".app", StringComparison.OrdinalIgnoreCase)) installDir = Path.GetDirectoryName(installDir)!;
-        return Path.Combine(Path.GetDirectoryName(installDir)!, installDirName);
     }
 
     private void Start() {
