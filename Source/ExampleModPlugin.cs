@@ -18,7 +18,6 @@ public partial class ExampleModPlugin : BaseUnityPlugin {
 
     private RepackedAssets? hollowKnightAssets;
     private RepackedAsset? tiktikAsset;
-    private Coroutine? processing;
 
     private AsyncOperationHandle<GameObject> tiktikPrefab;
 
@@ -41,7 +40,7 @@ public partial class ExampleModPlugin : BaseUnityPlugin {
     }
 
     private void Start() {
-        if (hollowKnightAssets != null) processing = StartCoroutine(hollowKnightAssets.ProcessRequests());
+        hollowKnightAssets?.Prepare();
     }
 
     private void Update() {
@@ -53,7 +52,6 @@ public partial class ExampleModPlugin : BaseUnityPlugin {
         
         Log.Info("Spawning tiktik");
 
-        yield return processing;
         if (!tiktikPrefab.IsValid()) tiktikPrefab = tiktikAsset!.Load();
         yield return tiktikPrefab;
 

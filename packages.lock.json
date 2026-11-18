@@ -52,6 +52,17 @@
         "resolved": "1.2.0-silksong1.0.30000",
         "contentHash": "2JPRsmFO5dBwLeIHA3kLlEYtu4BQ0Swdp3E4+J35IQGEujW3npMPot83BvY9wd3N7/Ycy2IfWilWC7fx6Sa3bg=="
       },
+      "Silksong.UnitySceneRepacker": {
+        "type": "Direct",
+        "requested": "[0.1.0-*, )",
+        "resolved": "0.1.0",
+        "contentHash": "XSPjhmyDoVmftpN7epK7AlpoDr3S/LuNv7A8ogKXsTv4Ky3RKGD0MeePhDh+XcwrG5YRlshGd5ZtypKi2ajWXg==",
+        "dependencies": {
+          "BepInEx.Core": "5.4.21",
+          "UnityEngine.Modules": "6000.0.50",
+          "unityscenerepacker": "4.1.0"
+        }
+      },
       "UnityEngine.Modules": {
         "type": "Direct",
         "requested": "[6000.0.50, )",
@@ -384,6 +395,11 @@
           "Microsoft.NETCore.Targets": "1.1.0",
           "System.Runtime": "4.3.0"
         }
+      },
+      "unityscenerepacker": {
+        "type": "Transitive",
+        "resolved": "4.1.0",
+        "contentHash": "8210pM4mVIx1/CazzYDOSE/kGh/98A31FDEpNh+RMIrNqOC3IBQdIeRljN5NgqQGWplK4f3ggB1EYVEEcMsW6w=="
       }
     }
   }
